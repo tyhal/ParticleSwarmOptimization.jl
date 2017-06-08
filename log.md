@@ -1,3 +1,7 @@
+# Project log
+
+## Package Creation
+
 - created src LICENSE README.md
 - opened julia
   * `;` key to switch to bash
@@ -18,6 +22,51 @@
 - It automatically commits initial changes
 - Had to overwrite git changes -> fresh history
 
+## Splitting Project into sections
+
+- Initial files to organise
+  * [fitness.jl](src/fitness.jl) Basic fitness functions
+  * [helpers.jl](src/helpers.jl) Helper functions for various needs
+  * [initialisation.jl](src/initialisation.jl) Creation of swarms
+  * [movement.jl](src/movement.jl) Logic for moving particles
+  * [plot.jl](src/plot.jl) Displaying the swarm state
+  * [types.jl](src/types.jl) for all types needed
+- Plan to use folders if these need further breaking up
+- In julia:
+  * Ran `Pkg.build("ParticleSwarmOptimization")`
+  * Ran `Pkg.add("ParticleSwarmOptimization")`
+  * Ran `using ParticleSwarmOptimization` ERROR
+- Module PlotlyJS not found in current path.
+- Run `Pkg.add("PlotlyJS")`segfault :confused:
+- Exit julia and retry
+- Run `Pkg.update()` ParticleSwarmOptimization: skipping update (dirty)...
+- ... Some errors later ...
+- Rebuilt
+  * Rmath
+- Ran tests which passed
+- Needed to install Electron for graphing
+  * `Blink.AtomShell.install()`
+- Graphing works but now need to put `ParticleSwarmOptimization.` for every method externally used
+- Solution was to add an alias lines
+  * `PSO = ParticleSwarmOptimization`
+- Tests and simple use case now work :thumbsup:
+
+## Running an example use case
+
+- From the project root directory we can run [example.jl](src/example.jl)
+```
+$ julia
+> # we can print the usecase file
+> for ln in eachline(open("test/test_usecase.jl")) print("$ln") end
+> # We can then load the example
+> include("test/test_usecase.jl")
+> # We can then run it
+> examplePSO()
+> # this will bring up a plot of before and after of a PSO run
+> exit()
+```
+
+---
 To get this package installed natively
 ```
 Pkg.clone("git://github.com/tylerhale/ParticalSwarmOptimization.jl.git")

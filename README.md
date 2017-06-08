@@ -2,6 +2,10 @@
 
 Partical Swarm Optimization library in Julia
 
+suppose to put important information here
+
+[project log](log.md)
+
 # Julia
 
 GR for speed, Plotly(JS) for interactivity, PyPlot otherwise.

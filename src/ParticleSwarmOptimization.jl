@@ -2,9 +2,11 @@ module ParticleSwarmOptimization
 
 # package code goes here
 
-include("helpers.jl")
 include("types.jl")
-
-include("basic.jl")
+include("initialisation.jl")
+include("fitness.jl")
+include("movement.jl")
+include("helpers.jl")
+include("plot.jl")
 
 end # module

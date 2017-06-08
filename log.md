@@ -87,5 +87,5 @@ $ julia
 ---
 To get this package installed natively
 ```
-Pkg.clone("git://github.com/tylerhale/ParticalSwarmOptimization.jl.git")
+Pkg.clone("git://github.com/tylerhale/ParticleSwarmOptimization.jl.git")
 ```

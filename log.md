@@ -2,7 +2,7 @@
 
 ## Package Creation
 
-- created src LICENSE README.md
+- created [src](src) [LICENSE](LICENSE) [README.md](README.md)
 - opened julia
   * `;` key to switch to bash
   * Pkg command to handle package management
@@ -50,6 +50,7 @@
 - Solution was to add an alias lines
   * `PSO = ParticleSwarmOptimization`
 - Tests and simple use case now work :thumbsup:
+- `julia> Pkg.build("ParticleSwarmOptimization");Pkg.test("ParticleSwarmOptimization")`
 
 ## Running an example use case
 
@@ -65,6 +66,19 @@ $ julia
 > # this will bring up a plot of before and after of a PSO run
 > exit()
 ```
+
+## Getting some more serious testing
+
+- Added some test files to expand on
+  * `include("test_fitness.jl")`
+  * `include("test_helper.jl")`
+  * `include("test_initialisation.jl")`
+  * `include("test_movement.jl")`
+  * `include("test_negative.jl")`
+  * `include("test_plot.jl")`
+  * `include("test_scenarios.jl")`
+  * `include("test_stress.jl")`
+  * `include("test_types.jl")`
 
 ---
 To get this package installed natively

@@ -1,7 +1,6 @@
 module ParticleSwarmOptimization
 
 # package code goes here
-
 include("types.jl")
 include("initialisation.jl")
 include("fitness.jl")

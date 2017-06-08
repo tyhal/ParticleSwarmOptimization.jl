@@ -16,6 +16,7 @@ type SwarmMeta
   SwarmMeta(c::String,n::String) = new(c,n,0,0,0,0)
 end
 
+# Basic swarm object
 type Swarm
   m::SwarmMeta
   p::Array{Particle,1} # Particle

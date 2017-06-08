@@ -1,36 +1,32 @@
-
-# Returns a tuple of (Array{Float64,1},Array{Float64,1})
-function SwarmFlattenCords(sw::Swarm)
-  ([p.x for p in sw.p],[p.y for p in sw.p])
-end
-
-function SwarmFlattenFitness(sw::Swarm)
-  [p.f for p in sw.p]
-end
-
-function mapParticles(func,sw)
-  sw.p = map!(func,sw.p)
+function mapParticles(func::Function,sw::Swarm)
+  sw.part = map!(func,sw.part)
   return sw
 end
 
-function mapSwarms(func,sws)
-  map!(func,sws)
-end
-
-function mapParticlesInSwarms(func,sws::Array{Swarm,1},count=1)
+function mapSwarms(func::Function,sws::Array{Swarm,1},count=1)
   if (count < 1)
     return sws
   end
   count -= 1
-  return mapParticlesInSwarms(func,map!(sw -> mapParticles(func,sw),sws),count)
+  mapSwarms(func,map!(func,sws),count)
 end
 
-function SwarmUpdateFitness(sw::Swarm)
-  newsw = mapParticles(sw.f,sw)
-  newsw.g = minimum(SwarmFlattenFitness(newsw))
-  return newsw
+function forSwarm(func::Function,sw::Swarm,count=1)
+  if (count < 1)
+    return sw
+  end
+  count -= 1
+  mapSwarms(func,func(sw),count)
 end
 
-function getTotalFitness(sws::Array{Swarm,1})
-  return reduce((a,b) -> a + b.g,0,sws)
+function mapParticlesInSwarms(func::Function,sws::Array{Swarm,1},count=1)
+  if (count < 1)
+    return sws
+  end
+  count -= 1
+  mapParticlesInSwarms(func,map!(sw -> mapParticles(func,sw),sws),count)
+end
+
+function SwarmGetFitness(sw::Swarm)
+  sw.glfi
 end

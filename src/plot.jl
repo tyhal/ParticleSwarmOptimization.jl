@@ -1,30 +1,52 @@
 using PlotlyJS
 @eval using Distributions
 
-# Good place to add general stats to a swarm
-function SwarmMetadataUpdateMinMax(sw::Swarm)
-  cords = SwarmFlattenCords(sw)
-  sw.m.xmin = minimum(cords[1])
-  sw.m.ymin = minimum(cords[2])
-  sw.m.xmax = maximum(cords[1])
-  sw.m.ymax = maximum(cords[2])
+function SwarmSetPlotter(plotter,sw::Swarm)
+  sw.plot.updt = plotter
   return sw
 end
 
-# Return a graph that looks cool :thumbs_up:
-# Takes an arrray of swarms
+function SwarmsSetPlotter(plotter,sws::Array{Swarm,1})
+  mapSwarms((sw) -> SwarmSetPlotter(plotter,sw),sws)
+end
+
+function ParticleUpdatePlotInfo(func::Function,pt::Particle)
+  pt.plot = func(pt)
+  return pt
+end
+
+# Returns a tuple of (Array{Float64,1},Array{Float64,1})
+function SwarmFlattenCords(sw::Swarm)
+  ([p.plot.x for p in sw.part],[p.plot.y for p in sw.part])
+end
+
+
+# Good place to add general stats to a swarm
+function SwarmUpdatePlotInfo(sw::Swarm)
+  # Can read data but only change the positioin on the graph
+  sw.part = map!(pt -> ParticleUpdatePlotInfo(sw.plot.updt,pt) , sw.part)
+  cords = SwarmFlattenCords(sw)
+  print(cords)
+  sw.plot.xmin = minimum(cords[1])
+  sw.plot.ymin = minimum(cords[2])
+  sw.plot.xmax = maximum(cords[1])
+  sw.plot.ymax = maximum(cords[2])
+  return sw
+end
+
+# Return a graph that looks cool :thumbsup:
+# Takes an array of swarms
 function SwarmPlot(sws::Array{Swarm,1})
-  newsws = mapSwarms(SwarmMetadataUpdateMinMax,sws)
+  newsws = mapSwarms(SwarmUpdatePlotInfo,sws)
   layout = Layout(;showlegend=true,
     shapes = [circle(
-      x0=swarmlay.m.xmin,
-      y0=swarmlay.m.ymin,
-      x1=swarmlay.m.xmax,
-      y1=swarmlay.m.ymax;
+      x0=swarmlay.plot.xmin,
+      y0=swarmlay.plot.ymin,
+      x1=swarmlay.plot.xmax,
+      y1=swarmlay.plot.ymax;
       opacity=0.1,
-      fillcolor=swarmlay.m.c,
-      line_color=swarmlay.m.c) for swarmlay in newsws])
-  data = [scatter(;x=SwarmFlattenCords(sw)[1], y=SwarmFlattenCords(sw)[2],mode="markers",name=sw.m.n,) for sw in newsws]
-
+      fillcolor=swarmlay.plot.colo,
+      line_color=swarmlay.plot.colo) for swarmlay in newsws])
+  data = [scatter(;x=SwarmFlattenCords(sw)[1], y=SwarmFlattenCords(sw)[2],mode="markers",name=sw.plot.name,) for sw in newsws]
   return plot(data,layout)
 end

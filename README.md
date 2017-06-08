@@ -2,7 +2,11 @@
 
 Partical Swarm Optimization library in Julia
 
-suppose to put important information here
+<!-- TODO update the plotting  -->
+<!-- TODO fix the iterations on the example  -->
+<!-- TODO fill in the tests  -->
+<!-- TODO add an extra swarm type  -->
+<!-- TODO solve an example problem  -->
 
 [project log](log.md)
 

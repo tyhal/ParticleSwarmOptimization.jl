@@ -80,6 +80,10 @@ $ julia
   * `include("test_stress.jl")`
   * `include("test_types.jl")`
 
+## Debugging
+ - It is painful to debug julia code
+ - Very verbose
+
 ---
 To get this package installed natively
 ```

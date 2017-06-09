@@ -26,7 +26,6 @@ function SwarmUpdatePlotInfo(sw::Swarm)
   # Can read data but only change the positioin on the graph
   sw.part = map!(pt -> ParticleUpdatePlotInfo(sw.plot.updt,pt) , sw.part)
   cords = SwarmFlattenCords(sw)
-  print(cords)
   sw.plot.xmin = minimum(cords[1])
   sw.plot.ymin = minimum(cords[2])
   sw.plot.xmax = maximum(cords[1])

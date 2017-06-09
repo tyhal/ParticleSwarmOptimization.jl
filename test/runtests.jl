@@ -35,6 +35,6 @@ using Base.Test
 if true
   include("test_usecase.jl")
   ret = examplePSO()
-  @test ret > 18.0
-  @test ret < 25.0
+  @test ret > 12.0
+  @test ret < 23.0
 end

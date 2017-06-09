@@ -9,17 +9,15 @@ include("pso.jl")
 
 # Main
 
-function RunPSO(sw::Swarm,count=1)
+function RunPSO(sw::Swarm,count=10)
   forSwarm(SwarmUpdate,sw,count).glfi
 end
 
-function RunPSOs(sws::Array{Swarm,1},count=1)
+function RunPSOs(sws::Array{Swarm,1},count=10)
   display(SwarmPlot(sws))
-  sleep(10)
-  # sws = mapSwarms(SwarmUpdate,sws,count)
-  # sws = map!(SwarmUpdate,sws)
-  # display(SwarmPlot(sws))
-  # SwarmsGetFitness(sws)
+  sws = mapSwarms(SwarmUpdate,sws,count)
+  display(SwarmPlot(sws))
+  SwarmsGetFitness(sws)
 end
 
 # Extra types

@@ -1,12 +1,16 @@
 # The actually useful
 
 function SwarmFlattenFitness(sw::Swarm)
-  [p.f for p in sw.p]
+  [p.fitn for p in sw.part]
 end
 
 function SwarmUpdateFitness(sw::Swarm)
-  newsw.glfi = minimum(SwarmFlattenFitness(newsw))
-  return newsw
+  sw.glfi = minimum(SwarmFlattenFitness(sw))
+  return sw
+end
+
+function GetBestSolution(sw::Swarm)
+  NaN
 end
 
 # Get a reduction of all the swarms fitness
@@ -30,7 +34,7 @@ end
 
 # Update this particles fitness with the inputted fitness funct
 function ParticleUpdateFitness(fifu::Any,pt::Particle)
-  pt.f = fifu(pt)
+  pt.fitn = fifu(pt)
   return pt
 end
 

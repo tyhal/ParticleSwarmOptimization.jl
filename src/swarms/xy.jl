@@ -14,8 +14,6 @@ end
 # Return a ParticlePlotInfo
 # Assumes Standard XY data
 function XYPlot(prt::Particle)
-  print("HEllo")
-  print(prt.data.x)
   ParticlePlotInfo(prt.data.x,prt.data.y)
 end
 
@@ -26,12 +24,12 @@ end
 function XYMove(glfi::Float64,swdata::Any,pt::Particle)
   pt.data.x += pt.data.vect[1]
   pt.data.y += pt.data.vect[2]
-  return plot
+  return pt
 end
 
 # Simple fitness = distance from (0,0)
 function XYFitnessFunc(pt::Particle)
-  sqrt((abs(pt.y)^2) + (abs(pt.x)^2))
+  sqrt((abs(pt.data.y)^2) + (abs(pt.data.x)^2))
 end
 
 function XYParticleInit(xyd::XYSeedData)
@@ -47,5 +45,5 @@ function XYSwarmCreate(x,y,count,dist,color="white",name="XY Swarm",fitness=XYFi
   move = XYMove
   initpop = XYParticleInit
   seed = XYSeedData(x,y,dist)
-  SwarmCreate(count,fitness,move,initpop,seed,color,name)
+  SwarmSetPlotter(XYPlot,SwarmCreate(count,fitness,move,initpop,seed,color,name))
 end

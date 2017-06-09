@@ -19,7 +19,7 @@ type SwarmPlotInfo
   xmax::Float64
   ymax::Float64
   updt::Function # Update for particles
-  SwarmPlotInfo(c::String,n::String) = new(c,n,0,0,0,0,(p::Particle) -> ParticlePlotInfo(p.fitn,p.fitn))
+  SwarmPlotInfo(c::String,n::String) = new(c,n,0,0,0,0,(p::Particle) -> ParticlePlotInfo(p.indx,p.fitn))
 end
 
 # Basic swarm object

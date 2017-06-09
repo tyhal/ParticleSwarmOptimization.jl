@@ -3,7 +3,7 @@ function mapParticles(func::Function,sw::Swarm)
   return sw
 end
 
-function mapSwarms(func::Function,sws::Array{Swarm,1},count=1)
+function mapSwarms(func::Function,sws::Array{Swarm,1},count::Int64=1)
   if (count < 1)
     return sws
   end
@@ -11,12 +11,12 @@ function mapSwarms(func::Function,sws::Array{Swarm,1},count=1)
   mapSwarms(func,map!(func,sws),count)
 end
 
-function forSwarm(func::Function,sw::Swarm,count=1)
+function forSwarm(func::Function,sw::Swarm,count::Int64=1)
   if (count < 1)
     return sw
   end
   count -= 1
-  mapSwarms(func,func(sw),count)
+  forSwarm(func,func(sw),count)
 end
 
 function mapParticlesInSwarms(func::Function,sws::Array{Swarm,1},count=1)

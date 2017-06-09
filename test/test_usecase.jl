@@ -13,11 +13,8 @@ function examplePSO()
   push!(swarms,PSO.XYSwarmCreate(4,4,200,1,"blue","The Best Swarm"))
   push!(swarms,PSO.XYSwarmCreate(20,20,500,3,"green"))
 
-  fit = PSO.RunPSOs(swarms,5)
-  fit = [24.0]
-  PSO.SwarmsGetTotalFitness(fit)
+  PSO.SwarmsGetTotalFitness(PSO.RunPSOs(swarms,5))
 end
 
-swarms = PSO.Swarm[]
-push!(swarms,PSO.XYSwarmCreate(2,3,3,0.45))
-newsws = PSO.mapSwarms(PSO.SwarmUpdatePlotInfo,swarms)
+# Most basic example
+# ret = PSO.RunPSO(PSO.XYSwarmCreate(1,2,5,0.45))

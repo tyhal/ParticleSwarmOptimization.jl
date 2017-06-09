@@ -24,7 +24,11 @@ function mapParticlesInSwarms(func::Function,sws::Array{Swarm,1},count=1)
     return sws
   end
   count -= 1
-  mapParticlesInSwarms(func,map!(sw -> mapParticles(func,sw),sws),count)
+  mapParticlesInSwarms(func,map!(sw -> mapParticles(func,sw),sws),count::Any)
+end
+
+function GetBestSolution(sw::Swarm)
+  sw.glpt
 end
 
 function SwarmGetFitness(sw::Swarm)

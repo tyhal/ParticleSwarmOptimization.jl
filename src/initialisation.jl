@@ -8,12 +8,17 @@
 #   move::Any # move func (glfi::Float64,swdata::Any,pt::Particle)
 #   data::Any # data
 # end
+# type Particle
+#   plot::ParticlePlotInfo
+#   indx::Integer # Id in array
+#   fitn::Float64 # Fitness
+#   befi::Float64 # Best Fitness
+#   data::Any
+# end
 
-# Place a swarm at (xa,ya) with (count) many particles using a (dist) distribution.
-# name it (name) and the tracking circle will be the color (color)
-# (seed) is feed as permanent data for swarm (so it can contain extra metadata)
-function SwarmCreate(count,fitness::Function,move::Function,initpop::Function,seed,color="white",name="Swarm")
-  g = Float64(Inf)
-  p = [Particle(ParticlePlotInfo(),i,Float64(Inf),initpop(seed)) for i in [1:count;]]
-  Swarm(SwarmsPlotInfo(color,name),p,g,fitness,move,seed)
+#Move(glfi::Float64,swdata::Any,pt::Particle) return Particle
+#fitness(pt::Particle) return Float64
+function SwarmCreate(count,fitness::Function,move::Function,initpop::Function,seed::Any,color="white",name="Swarm")
+  p = [Particle(i,initpop(seed)) for i in [1:count;]]
+  Swarm(SwarmsPlotInfo(color,name),p,p[1].fitn,p[1],fitness,move,seed)
 end

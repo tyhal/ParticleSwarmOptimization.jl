@@ -54,13 +54,13 @@
 
 ## Running an example use case
 
-- From the project root directory we can run [example.jl](src/example.jl)
+- From the project root directory we can run [test_simple.jl](test/test_simple.jl)
 ```
 $ julia
 > # we can print the usecase file
-> for ln in eachline(open("test/test_usecase.jl")) print("$ln") end
+> for ln in eachline(open("test/test_simple.jl")) print("$ln") end
 > # We can then load the example
-> include("test/test_usecase.jl")
+> include("test/test_simple.jl")
 > # We can then run it
 > examplePSO()
 > # this will bring up a plot of before and after of a PSO run
@@ -83,6 +83,9 @@ $ julia
 ## Debugging
  - It is painful to debug julia code
  - Very verbose
+
+## Removing XY
+ - Made XY Swarm an example rather than the primary
 
 ---
 To get this package installed natively

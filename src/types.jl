@@ -11,7 +11,7 @@ type Particle
   data::Any
 end
 
-type SwarmPlotInfo
+type SwarmsPlotInfo
   colo::String # Swarm Color
   name::String # Name of Swarm :3
   xmin::Float64
@@ -19,12 +19,12 @@ type SwarmPlotInfo
   xmax::Float64
   ymax::Float64
   updt::Function # Update for particles
-  SwarmPlotInfo(c::String,n::String) = new(c,n,0,0,0,0,(p::Particle) -> ParticlePlotInfo(p.indx,p.fitn))
+  SwarmsPlotInfo(c::String,n::String) = new(c,n,0,0,0,0,(p::Particle) -> ParticlePlotInfo(p.indx,p.fitn))
 end
 
 # Basic swarm object
 type Swarm
-  plot::SwarmPlotInfo
+  plot::SwarmsPlotInfo
   part::Array{Particle,1} # Particle
   glfi::Float64 # Best Global
   fifu::Function # fitness func

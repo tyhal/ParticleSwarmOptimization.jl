@@ -35,9 +35,9 @@ end
 
 # Return a graph that looks cool :thumbsup:
 # Takes an array of swarms
-function SwarmPlot(sws::Array{Swarm,1})
+function SwarmsPlot(sws::Array{Swarm,1},title::String="Swarm Plot")
   newsws = mapSwarms(SwarmUpdatePlotInfo,sws)
-  layout = Layout(;showlegend=true,
+  layout = Layout(;title=title,showlegend=true,
     shapes = [circle(
       x0=swarmlay.plot.xmin,
       y0=swarmlay.plot.ymin,

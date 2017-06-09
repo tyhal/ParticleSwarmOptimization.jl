@@ -19,22 +19,17 @@ using Base.Test
 #
 # ## Misc Test
 #
-# # Check to see if the example use case finds the perfect fitess for every swarm
-# include("test_scenarios.jl")
-# @test PSO.getTotalFitness(scenario1()) == 0
+# Check to see if the example use case finds the perfect fitess for every swarm
+include("test_scenarios.jl")
+ret = scenario1()
+@test ret > 12.0
+@test ret < 23.0
 # @test PSO.getTotalFitness(scenario2()) == 0
 # @test PSO.getTotalFitness(scenario3()) == 0
 # @test PSO.getTotalFitness(scenario4()) == 0
-#
+
 # include("test_negative.jl")
 #
 # include("test_stress.jl")
 
-
-# Test the basic example
-if true
-  include("test_usecase.jl")
-  ret = examplePSO()
-  @test ret > 12.0
-  @test ret < 23.0
-end
+include("test_simple.jl")

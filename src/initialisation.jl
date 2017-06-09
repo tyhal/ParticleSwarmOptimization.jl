@@ -1,7 +1,7 @@
 
 # # Basic swarm object
 # type Swarm
-#   plot::SwarmPlotInfo
+#   plot::SwarmsPlotInfo
 #   part::Array{Particle,1} # Particle
 #   glfi::Float64 # Best Global
 #   fifu::Any # fitness func
@@ -15,5 +15,5 @@
 function SwarmCreate(count,fitness::Function,move::Function,initpop::Function,seed,color="white",name="Swarm")
   g = Float64(Inf)
   p = [Particle(ParticlePlotInfo(),i,Float64(Inf),initpop(seed)) for i in [1:count;]]
-  Swarm(SwarmPlotInfo(color,name),p,g,fitness,move,seed)
+  Swarm(SwarmsPlotInfo(color,name),p,g,fitness,move,seed)
 end

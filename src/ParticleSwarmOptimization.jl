@@ -10,9 +10,9 @@ include("pso.jl")
 # Main
 
 function RunPSOs(sws::Array{Swarm,1},count=10)
-  display(SwarmsPlot(sws))
+  display(SwarmsPlot(sws,"Before"))
   sws = mapSwarms(SwarmUpdate,sws,count)
-  display(SwarmsPlot(sws))
+  display(SwarmsPlot(sws,"After"))
   SwarmsGetFitness(sws)
 end
 

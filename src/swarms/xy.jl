@@ -17,14 +17,15 @@ function XYPlot(prt::Particle)
   ParticlePlotInfo(prt.data.x,prt.data.y)
 end
 
-function XYUpdateVelocity()
+function XYUpdateVelocity(glfi::Float64,swdata::Any,pt::Particle)
+  return pt
 end
 
 # Apply the movement vector
 function XYMove(glfi::Float64,swdata::Any,pt::Particle)
   pt.data.x += pt.data.vect[1]
   pt.data.y += pt.data.vect[2]
-  return pt
+  return XYUpdateVelocity(glfi,swdata,pt)
 end
 
 # Simple fitness = distance from (0,0)

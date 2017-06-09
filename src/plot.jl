@@ -1,6 +1,8 @@
 using PlotlyJS
 @eval using Distributions
 
+# https://plot.ly/julia/figure-labels/
+
 function SwarmSetPlotter(plotter,sw::Swarm)
   sw.plot.updt = plotter
   return sw
